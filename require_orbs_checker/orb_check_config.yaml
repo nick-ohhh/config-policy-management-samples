@@ -1,0 +1,28 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@3.1.3
+  aws-ecr: circleci/aws-ecr@8.1.2
+
+executors:
+  base:
+    docker:
+      - image: cimg/base:stable
+
+jobs:
+  job_a:
+    executor: base
+    steps:
+      - checkout
+      - run: echo hello 1
+  job_b:
+    executor: base
+    steps:
+      - checkout
+      - run: echo hello 2
+
+workflows:
+  job-workflow:
+    jobs:
+      - job_a
+      - job_b

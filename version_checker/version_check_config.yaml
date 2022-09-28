@@ -1,0 +1,25 @@
+version: 2.0
+
+executors:
+  base:
+    docker:
+      - image: cimg/base:stable
+
+jobs:
+  job_a:
+    executor: base
+    steps:
+      - checkout
+      - run: echo hello 1
+  job_b:
+    executor: base
+    steps:
+      - checkout
+      - run: echo hello 2
+
+
+workflows:
+  job-workflow:
+    jobs:
+      - job_a
+      - job_b
